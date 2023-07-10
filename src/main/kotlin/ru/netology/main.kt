@@ -19,6 +19,8 @@ data class Post(
     val likes: Likes = Likes(),
     val copyright: Copyright = Copyright(),
     val reposts: Reposts = Reposts(),
+
+    val attachment: Array<Attachment> = emptyArray<Attachment>(),
 )
 
 data class Comments(
@@ -101,4 +103,9 @@ fun main() {
         println("Пост обновлен")
         WallService.printAll()
     } else println("Пост не найден")
+
+    println("")
+    val photo = PhotoAttachment(photo = Photo(id = 333))
+    val audio = AudioAttachment(audio = Audio(id = 555))
+    println(WallService.add(Post(replyOwnerId = null, replyPostId = null, attachment = arrayOf(photo, audio))))
 }
